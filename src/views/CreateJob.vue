@@ -45,9 +45,6 @@ export default {
         .then(() => {
           console.log(job);
           this.msg = this.$store.state.msg
-          this.$router.push({
-            name: 'view-jobs'
-          })
         })
         .catch(error => {
           console.log(error);

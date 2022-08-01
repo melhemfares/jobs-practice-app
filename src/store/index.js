@@ -40,8 +40,7 @@ export default createStore({
           commit('SET_MSG', 'Successfully registered')
         })
         .catch(error => {
-          console.log(error);
-          commit('SET_MSG', 'Incomplete fields or password too short')
+          commit('SET_MSG', error.response.data.msg)
         })
     },
     logUser({ commit }, user) {
@@ -87,7 +86,7 @@ export default createStore({
         })
         .catch(error => {
           console.log(error)
-          commit('SET_MSG', 'Failed to create job')
+          commit('SET_MSG', error.response.data.msg)
         })
     },
     patchJob({ commit }, body) {
@@ -98,7 +97,7 @@ export default createStore({
         })
         .catch(error => {
           console.log(error)
-          commit('SET_MSG', 'Failed to update job')
+          commit('SET_MSG', error.response.data.msg)
         })
     },
   },
