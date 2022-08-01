@@ -1,7 +1,11 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link :to="{ name: 'home' }">Home</router-link> |
+    <router-link :to="{ name: 'register' }">Register</router-link> |
+    <router-link v-if="isLoggedIn" @click="logout" :to="{ name: 'logout' }">Log out</router-link>
+    <router-link v-else :to="{ name: 'login' }">Log in</router-link> |
+    <router-link v-if="isLoggedIn" :to="{ name: 'view-jobs' }">View Jobs</router-link> |
+    <router-link v-if="isLoggedIn" :to="{ name: 'create-job' }">Create Job</router-link>
   </nav>
   <router-view/>
 </template>
@@ -27,4 +31,30 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10%;
+}
+
 </style>
+
+<script>
+import store from "@/store"
+
+export default {
+  computed: {
+    isLoggedIn() {
+      return store.state.isLoggedIn
+    }
+  },
+  methods: {
+    logout() {
+      store.state.isLoggedIn = false
+    }
+  }
+}
+</script>
