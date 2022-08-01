@@ -39,8 +39,6 @@ export default {
     })
   },
   updateJob(id, job) {
-    console.log(job);
-
     return apiClient.patch('/jobs/' + id, job, {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('token')
